@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void mandarApi(JSONObject jsonObject) {
-    String url = "http://10.0.2.2/examen-rest-api/peticiones-http/CreatePerson.php";
+    String url = "http://192.168.225.212/examen-rest-api/peticiones-http/CreatePerson.php";
 
     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
       @Override
