@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PM1ExamenGrupo1</string>
+    <string name="nombreTextView">Ingrese un nombre</string>
+    <string name="longitudTextView">Longitud</string>
+    <string name="latitudTextView">Latitud</string>
+    <string name="telefonoTextView">Ingrese un telefono</string>
+    <string name="buttonGuardarText">Guardar</string>
+    <string name="buttonVerPersonasText">Ver personas</string>
+    <string name="eliminarButton">Eliminar</string>
+    <string name="actualizarButton">Actualizar</string>
+    <string name="regresarButton">Regresar</string>
+    <string name="verMapa">Ver mapa</string>
+</resources>
