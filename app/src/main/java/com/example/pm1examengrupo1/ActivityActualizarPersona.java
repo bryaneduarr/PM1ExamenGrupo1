@@ -191,7 +191,7 @@ public class ActivityActualizarPersona extends AppCompatActivity {
   }
 
   private void traerDatosPersona() {
-    String url = "http://10.0.2.2/examen-rest-api/peticiones-http/GetPersons.php?id=" + personId;
+    String url = "http://192.168.225.212/examen-rest-api/peticiones-http/GetPersons.php?id=" + personId;
 
     RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -234,7 +234,7 @@ public class ActivityActualizarPersona extends AppCompatActivity {
   }
 
   private void actualizarPersona() {
-    String url = "http://10.0.2.2/examen-rest-api/peticiones-http/UpdatePerson.php";
+    String url = "http://192.168.225.212/examen-rest-api/peticiones-http/UpdatePerson.php";
     RequestQueue requestQueue = Volley.newRequestQueue(this);
 
     try {

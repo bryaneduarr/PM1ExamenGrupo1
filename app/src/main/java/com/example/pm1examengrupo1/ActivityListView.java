@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ActivityListView extends AppCompatActivity {
+public class ActivityListView extends AppCompatActivity implements SearchView.OnQueryTextListener{
   private Button eliminarButton, actualizarButton, regresarButton, verMapaButton;
   private double selectedLatitud, selectedLongitud;
   private int selectedItemPosition = -1;
@@ -42,6 +43,8 @@ public class ActivityListView extends AppCompatActivity {
   private int selectedItemId = -1;
   private PersonasAdapter adapter;
   private ListView listView;
+  private SearchView txtsearch;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,7 @@ public class ActivityListView extends AppCompatActivity {
     eliminarButton = findViewById(R.id.eliminarButton);
     regresarButton = findViewById(R.id.regresarButton);
     verMapaButton = findViewById(R.id.verMapaButton);
+    txtsearch = findViewById(R.id.txtsearch);
 
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
@@ -105,11 +109,13 @@ public class ActivityListView extends AppCompatActivity {
       }
     });
 
+    txtsearch.setOnQueryTextListener(this);
+
     traerDatos();
   }
 
   private void traerDatos() {
-    String url = "http://10.0.2.2/examen-rest-api/peticiones-http/GetPersons.php";
+    String url = "http://192.168.225.212/examen-rest-api/peticiones-http/GetPersons.php";
     RequestQueue queue = Volley.newRequestQueue(this);
 
     JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -144,7 +150,7 @@ public class ActivityListView extends AppCompatActivity {
 
   private void eliminarPersona() {
     if (selectedItemPosition != -1) {
-      String url = "http://10.0.2.2/examen-rest-api/peticiones-http/DeletePerson.php";
+      String url = "http://192.168.225.212/examen-rest-api/peticiones-http/DeletePerson.php";
       RequestQueue queue = Volley.newRequestQueue(this);
 
       StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -198,5 +204,16 @@ public class ActivityListView extends AppCompatActivity {
 
       startActivity(intent);
     }
+  }
+
+  @Override
+  public boolean onQueryTextSubmit(String query) {
+    return false;
+  }
+
+  @Override
+  public boolean onQueryTextChange(String newText) {
+    adapter.filtrado(newText);
+    return false;
   }
 }
